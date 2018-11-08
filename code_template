@@ -1,0 +1,45 @@
+implementation of naive bayes
+
+- p(t|x) = p(x|t)*p(t)/p(x)
+
+p(t): class probability
+p(x|t): likelihood, prob of feature given class
+p(x): total prob of feature irrespective of given class
+
+1) read data:
+    - encode the features into 1 and 0
+    - feature matrix: contains the encoded feature values
+    - label_matrix: contains the encoded label values
+    - num_values: get the range of values for each of the feature values to compute the conditional fo each of the features
+
+TAN
+
+- find the edge weights
+ I(x_i,x_j|y) = P(x_i,x_j,y)log2 P(x_i,x_j|y)/p(x_i|y)p(x_j|y)
+ p(x_i|y)p(x_j|y) = both these terms can be computed through prob_x_given_y method in naive bayes
+ p(x_i, x_j|y): need to calculate
+
+ 1) divide dataset into subsets
+
+ 2) 2 for loops to check xi and xj
+ 3)
+
+ I_value = 0
+                for v1 in X[x_i]:
+                    for v2 in X[x_j]:
+                        for y in Y:
+                            I_value += P_XXY[y][v2].loc[v1]*\
+                                       math.log((P_XXgY[y][v2].loc[v1]/(P_XigY[y].loc[v1]*P_XjgY[y].loc[v2])), 2)
+
+                infoGain[x_i].loc[x_j] = I_value
+
+conditional probability on the spanning tree
+1) need parent and child arrays
+2) check if the node has a parent-> if not calculate PxGy
+3) if parent exists calculate -> p(xi|xjy)
+ - calculating p(xi|xjy)
+ 1) construct subsets based on xj and y values
+ 2) compute xi|xjy value
+
+ {(b'normal', b'no', b'metastases'): 0.008620689655172414, (b'normal', b'no', b'malign_lymph'): 0.008620689655172414, (b'normal', b'yes', b'metastases'): 0.008620689655172414, (b'normal', b'yes', b'malign_lymph'): 0.008620689655172414, (b'arched', b'no', b'metastases'): 0.07758620689655173, (b'arched', b'no', b'malign_lymph'): 0.13793103448275862, (b'arched', b'yes', b'metastases'): 0.16379310344827586, (b'arched', b'yes', b'malign_lymph'): 0.06896551724137931, (b'deformed', b'no', b'metastases'): 0.05172413793103448, (b'deformed', b'no', b'malign_lymph'): 0.07758620689655173, (b'deformed', b'yes', b'metastases'): 0.12931034482758622, (b'deformed', b'yes', b'malign_lymph'): 0.02586206896551724, (b'displaced', b'no', b'metastases'): 0.017241379310344827, (b'displaced', b'no', b'malign_lymph'): 0.07758620689655173, (b'displaced', b'yes', b'metastases'): 0.10344827586206896, (b'displaced', b'yes', b'malign_lymph'): 0.034482758620689655}
+{(b'normal', b'no', b'metastases'): 0.008620689655172414, (b'normal', b'no', b'malign_lymph'): 0.008620689655172414, (b'normal', b'yes', b'metastases'): 0.008620689655172414, (b'normal', b'yes', b'malign_lymph'): 0.008620689655172414, (b'arched', b'no', b'metastases'): 0.1896551724137931, (b'arched', b'no', b'malign_lymph'): 0.1810344827586207, (b'arched', b'yes', b'metastases'): 0.05172413793103448, (b'arched', b'yes', b'malign_lymph'): 0.02586206896551724, (b'deformed', b'no', b'metastases'): 0.12931034482758622, (b'deformed', b'no', b'malign_lymph'): 0.08620689655172414, (b'deformed', b'yes', b'metastases'): 0.05172413793103448, (b'deformed', b'yes', b'malign_lymph'): 0.017241379310344827, (b'displaced', b'no', b'metastases'): 0.08620689655172414, (b'displaced', b'no', b'malign_lymph'): 0.10344827586206896, (b'displaced', b'yes', b'metastases'): 0.034482758620689655, (b'displaced', b'yes', b'malign_lymph'): 0.008620689655172414}
